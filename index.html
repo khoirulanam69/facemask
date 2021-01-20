@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <title>FaceMaskDetector</title>
+  </head>
+  <body>
+    <!-- Image and text -->
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">
+        <img
+          src="./assets/logo/logo.png"
+          width="40"
+          height="40"
+          class="d-inline-block align-center"
+          alt=""
+        />
+        FACE MASK DETEKTOR
+      </a>
+    </nav>
+    <aside>
+      <ul>
+        <a href="#"
+          ><li class="text-center">
+            <i class="fas fa-bars"></i></li
+        ></a>
+        <a href="index.html"
+          ><li class="text-center">
+            <i class="fas fa-folder-plus"></i></li
+        ></a>
+      </ul>
+    </aside>
+    <section>
+      <div class="row">
+        <div class="box col-md-6">
+          <h4>INSERT</h4>
+          <div class="row">
+            <div class="col-md-10 offset-md-1">
+              <img class="preview" id="preview" />
+              <div class="insert" id="insert">
+                <div class="row">
+                  <div class="col-md-10 offset-md-1">
+                    <div class="border-dot text-center">
+                      <i class="fas fa-plus"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <form action="index.html" method="POST">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input
+                      type="file"
+                      id="photo"
+                      accept="image/*"
+                      onchange="showPreview(event);"
+                    />
+                    <div class="paperclip text-center">
+                      <label for="photo">
+                        <i class="fas fa-paperclip"></i>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <a href="#"
+                      ><div class="camera text-center">
+                        <i class="fas fa-camera"></i></div
+                    ></a>
+                  </div>
+                </div>
+                <button type="button" onclick="process()">CHECK</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>RESULT</h4>
+          <div class="row">
+            <div class="col-md-10 offset-md-1">
+              <img class="res" id="res" />
+              <div class="result" id="result">
+                <div class="row">
+                  <div class="col-md-10 offset-md-1">
+                    <div class="border-dot">
+                      <h1>IMAGE</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="analisis">
+                <h5>Result</h5>
+                <div id="result-txt"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JS Tensorflow -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <script src="assets/js/classifier.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var src;
+      function showPreview(event) {
+        if (event.target.files.length > 0) {
+          src = URL.createObjectURL(event.target.files[0]);
+          var preview = document.getElementById("preview");
+          var insert = document.getElementById("insert");
+          preview.src = src;
+          preview.style.display = "block";
+          insert.style.display = "none";
+        }
+      }
+      function process() {
+        predict();
+
+        document.querySelector("img#res").src = src;
+        document.querySelector("img#res").style.display = "block";
+        document.querySelector("div#result").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

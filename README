@@ -1,19 +1,1 @@
-## Preview sudah jadi
 
-Test di : https://cv.mbaguszulmi.com/facemask/
-
-
-## Install lokal
-
-1. Buka folder berisi index.html, assets, dan jsmodel di dalam vscode
-2. Install package vscode Live Server https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
-3. Tekan CTRL + Shift + P lalu ketik "live server". Lalu pilih open with live server.
-4. Done install
-
-
-## Cara penggunaan
-
-1. Tekan tombol attachment (ikon klip kertas)
-2. Pilih gambar wajah dengan masker atau tidak.
-3. Tekan tombol CHECK
-4. Tunggu dan lihat hasilnya dikanan.
